@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HRApplication</string>
+    <string name="URL">https://raw.githubusercontent.com/slozanomuy/Services/master/RH.json</string>
+</resources>
