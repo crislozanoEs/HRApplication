@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+android:layout_marginStart="7dp"
+android:layout_marginEnd="7dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:id="@+id/txt_name"
+                android:padding="5dp"
+                android:layout_weight="0.3"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Id"
+                android:id="@+id/txt_id"
+                android:padding="5dp"
+                android:layout_weight="0.7"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Posicion"
+                android:id="@+id/txt_position"
+                android:padding="5dp"
+                android:layout_weight="0.5"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salario"
+                android:id="@+id/txt_salary"
+                android:padding="5dp"
+                android:layout_weight="0.5"/>
+    </LinearLayout>
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:id="@+id/txt_phone"
+            android:padding="5dp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:id="@+id/txt_email"
+            android:padding="5dp"/>
+
+</LinearLayout>
