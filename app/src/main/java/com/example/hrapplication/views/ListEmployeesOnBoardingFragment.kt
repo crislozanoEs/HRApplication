@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,30 +19,24 @@ import com.example.hrapplication.R
 import com.example.hrapplication.manager.EmployeeItemAdapter
 import java.util.ArrayList
 
-class ListEmployeesFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickListener {
+class ListEmployeesOnBoardingFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickListener {
 
     private val EMPLOYEES_LIST = "employeesList"
-    /**
-     * The Menu mas recycler.
-     */
-    @Nullable
-    @BindView(R.id.searchBar)
-    @JvmField var searchBox: SearchView? = null
 
     /**
      * The Menu mas recycler.
      */
     @Nullable
-    @BindView(R.id.section_list_employees)
-    @JvmField var sectionEmployees: RecyclerView ?= null
+    @BindView(R.id.section_list_employees_on_boarding)
+    @JvmField var sectionEmployeesBoarding: RecyclerView ?= null
 
     private var listEmployees: MutableList<Employee> ?= null
 
     internal var unbinder: Unbinder ?= null
 
 
-    fun newInstance(itemsLinks: ArrayList<Employee>): ListEmployeesFragment {
-        val fragment = ListEmployeesFragment()
+    fun newInstance(itemsLinks: ArrayList<Employee>): ListEmployeesOnBoardingFragment {
+        val fragment = ListEmployeesOnBoardingFragment()
         val args = Bundle()
         args.putSerializable(EMPLOYEES_LIST, itemsLinks)
         fragment.arguments = args
@@ -63,23 +56,12 @@ class ListEmployeesFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickList
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.fragment_list_employees, container, false)
+        var view = inflater.inflate(R.layout.fragment_list_employees_on_boarding, container, false)
+
         unbinder = ButterKnife.bind(this, view)
-        val adapter = EmployeeItemAdapter(listEmployees!!, this)
-        sectionEmployees?.setLayoutManager(LinearLayoutManager(context))
-        sectionEmployees?.setAdapter(adapter)
-        searchBox?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                adapter.filter(newText)
-                return false
-            }
-
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
-
-        })
+        val adapterOnBoarding = EmployeeItemAdapter(listEmployees!!, this)
+        sectionEmployeesBoarding?.layoutManager = LinearLayoutManager(context)
+        sectionEmployeesBoarding?.adapter = adapterOnBoarding
         return view
     }
 

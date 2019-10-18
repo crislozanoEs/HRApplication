@@ -1,14 +1,12 @@
 package com.example.hrapplication.views
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.RadioButton
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -31,7 +29,7 @@ class EmployeeDetailFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickLis
 
     @Nullable
     @BindView(R.id.section_list_sub_employees)
-    @JvmField var sectionEmployees: RecyclerView ?= null
+    @JvmField var sectionEmployeesDetail: RecyclerView ?= null
 
     @Nullable
     @BindView(R.id.txt_id)
@@ -58,15 +56,15 @@ class EmployeeDetailFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickLis
     @JvmField var txtName: TextView ?= null
 
     @Nullable
-    @BindView(R.id.radio_nuevo)
-    @JvmField var radioButton: RadioButton ?= null
+    @BindView(R.id.check_nuevo)
+    @JvmField var checkButton: CheckBox ?= null
 
     @Nullable
     @BindView(R.id.btn_guardar)
     @JvmField var btnGuardar: Button ?= null
 
 
-    private var listEmployees: List<Employee> ?= null
+    private var listEmployees: MutableList<Employee> ?= null
 
     internal var unbinder: Unbinder ?= null
 
@@ -86,7 +84,7 @@ class EmployeeDetailFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickLis
         super.onCreate(savedInstanceState)
         val argumentsVariable = arguments
         if (argumentsVariable != null) {
-            this.listEmployees = argumentsVariable.get(EMPLOYEES_LIST) as (List<Employee>)
+            this.listEmployees = argumentsVariable.get(EMPLOYEES_LIST) as (MutableList<Employee>)
             this.employee = argumentsVariable.get(EMPLOYEE_DETAIL) as Employee
         }
     }
@@ -98,18 +96,18 @@ class EmployeeDetailFragment() : Fragment(), EmployeeItemAdapter.OnItemLClickLis
     ): View? {
         var view = inflater.inflate(R.layout.content_item_employee, container, false)
         unbinder = ButterKnife.bind(this, view)
-        val adapter = EmployeeItemAdapter(listEmployees!!, this)
-        sectionEmployees?.setLayoutManager(LinearLayoutManager(context))
-        sectionEmployees?.setAdapter(adapter)
+        val adapterDetail = EmployeeItemAdapter(listEmployees!!, this)
+        sectionEmployeesDetail?.layoutManager = LinearLayoutManager(context)
+        sectionEmployeesDetail?.adapter = adapterDetail
         txtId?.text = employee!!.id.toString()
         txtName?.text = employee!!.name
-        txtSalary?.text = employee!!.salary
+        txtSalary?.text = "Gana \$ ${employee!!.salary}"
         txtPosition?.text = employee!!.position
         txtPhone?.text = employee!!.phone
         txtEmail?.text = employee!!.email
-        radioButton?.isActivated = employee!!.nuevo
-        radioButton?.setOnCheckedChangeListener{
-                buttonView, isChecked -> changeButtonState(isChecked)
+        checkButton?.isChecked = employee!!.nuevo
+        checkButton?.setOnCheckedChangeListener{
+                _, isChecked -> changeButtonState(isChecked)
         }
         btnGuardar?.setOnClickListener { updateState() }
 

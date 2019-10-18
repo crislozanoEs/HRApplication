@@ -6,22 +6,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            app:title="Aplication Recursos Humanos"
-            android:id="@+id/toolbar_main"/>
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_init_app"
-            android:text="Recargar"
-            android:layout_below="@+id/toolbar_main"/>
+            android:orientation="horizontal"
+            android:id="@+id/linear_main">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_init_app"
+                android:text="Recargar"
+                android:layout_weight="0.5"/>
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_list_nuevos"
+                android:text="Nuevos"
+                android:layout_below="@+id/btn_init_app"
+                android:enabled="false"
+                android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/btn_init_app"
+            android:layout_below="@+id/linear_main"
             android:id ="@+id/insert_point"
             android:paddingTop="5dp"/>
 

@@ -1,5 +1,6 @@
 package com.example.hrapplication.manager
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,20 +13,26 @@ import com.example.hrapplication.R
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.hrapplication.manager.EmployeeItemAdapter.ViewHolder
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EmployeeItemAdapter() : RecyclerView.Adapter<ViewHolder>() {
 
 
-    var listEmployee: List<Employee>? = null
+
+    var arraylist: ArrayList<Employee>?=null
+    var listEmployee: MutableList<Employee>? = null
     var onItemLClickListener: OnItemLClickListener? = null
 
 
     constructor(
-        listEmployees: List<Employee>,
+        listEmployees: MutableList<Employee>,
         onItemLClickListener: OnItemLClickListener
     ) : this() {
         this.listEmployee = listEmployees
         this.onItemLClickListener = onItemLClickListener
+        this.arraylist = ArrayList()
+        this.arraylist?.addAll(listEmployee!!)
     }
 
     @NonNull
@@ -44,17 +51,34 @@ class EmployeeItemAdapter() : RecyclerView.Adapter<ViewHolder>() {
     override fun getItemCount(): Int {
         return listEmployee!!.size
     }
+    fun filter(charText: String) {
+        var charText = charText
+        charText = charText.toLowerCase(Locale.getDefault())
+        listEmployee?.clear()
+        if (charText.length == 0) {
+            for (element in this!!.arraylist!!) {
+                listEmployee?.add(element)
+            }
+        } else {
+            for (element in this!!.arraylist!!) {
+                if (element.name.toLowerCase(Locale.getDefault()).contains(charText)) {
+                    listEmployee?.add(element)
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(var view: View) : RecyclerView.ViewHolder(view)
    {
-       @BindView(R.id.txt_name_tabla)
-       @JvmField var nameItem: TextView? = null
+       @BindView(R.id.txt_id_tabla)
+       @JvmField var idItem: TextView? = null
 
-        @BindView(R.id.txt_id_tabla)
-        @JvmField var idItem: TextView? = null
+        @BindView(R.id.txt_name_tabla)
+        @JvmField var nameItem: TextView? = null
 
        init{
-           ButterKnife.bind(this, itemView)
+           ButterKnife.bind(this, view)
        }
         fun setClickListener(itemEmployee: Employee, listener: OnItemLClickListener) {
             view.setOnClickListener { listener.onItemClick(itemEmployee) }

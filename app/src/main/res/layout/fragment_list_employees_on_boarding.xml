@@ -5,12 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".views.ListEmployeesFragment">
-
-    <SearchView
-            android:id="@+id/searchBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/linea_gris"
+            android:text="Trabajadores nuevos"/>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="horizontal" android:background="@color/linea_gris">
         <TextView
@@ -28,7 +25,7 @@
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/section_list_employees"
+            android:id="@+id/section_list_employees_on_boarding"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 </LinearLayout>

@@ -65,12 +65,14 @@
             android:text="Email"
             android:id="@+id/txt_email"
             android:padding="5dp"/>
-    <RadioButton
+    <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nuevo"
-            android:id="@+id/radio_nuevo"/>
-
+            android:id="@+id/check_nuevo"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/linea_gris"
+            android:text="Reportan a este trabajor"/>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="horizontal">
         <TextView
@@ -87,6 +89,7 @@
                 android:layout_weight="0.7"/>
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/section_list_sub_employees"
             android:layout_width="match_parent"
